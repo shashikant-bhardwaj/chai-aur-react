@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 import { TodoProvider } from './Context'
+import TodoForm from './components/TodoForm'
+import TodoItem from './components/TodoItem'
 
 function App() {
 
-  Const [Todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([])
 
-  const  addTodo = () => {
+  const  addTodo = (todo) => {
     setTodos( (prev) => [{id: Date.now(), ...todo},...prev])
   }
 
@@ -24,7 +23,7 @@ function App() {
   }
 
   const toggleComplete = (id) => {
-    setTodos( (prev) => prev.map( (pevTodo) => prevTodo.id ===id ? {...prevTodo , completed: !prevTodo.completed} : prevTodo ))
+    setTodos( (prev) => prev.map( (prevTodo) => prevTodo.id ===id ? {...prevTodo , completed: !prevTodo.completed} : prevTodo ))
   }
 
   useEffect( () => {
