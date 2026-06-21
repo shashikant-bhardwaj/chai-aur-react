@@ -1,9 +1,9 @@
-import conf from '../conf.js'
+import conf from "../../conf/conf.js";
 import { Client, TablesDB, Storage, ID, Query } from 'appwrite'
 
 export class Service {
     client = new Client();
-    Databases;
+    databases;
     bucket;
 
     constructor() {
@@ -17,7 +17,7 @@ export class Service {
 
     async createPost({ title, slug, content, featuredImage, status, userId }) {
         try {
-            return await this.TablesDB.createRows(
+            return await this.databases.createRows(
                 conf.appwriteDataId,
                 conf.appwriteCollectionId,
                 slug,
@@ -34,11 +34,11 @@ export class Service {
         }
     }
 
-    async updatePost(slug, { title, content, featuredImages, status }) {
+    async updatePost(slug, { title, content, featuredImage, status }) {
         try {
             return this.databases.updateRow(
                 conf.appwriteDataId,
-                appwriteCollectionId,
+                conf.appwriteCollectionId,
                 slug,
                 {
                     title,
@@ -82,7 +82,7 @@ export class Service {
 
     async getPosts (queries = [Query.equal("status", "active")]){
         try {
-            this.databases.listRows(
+             await this.databases.listRows(
                 conf.appwriteDataId,
                 conf.appwriteCollectionId,
                 queries, 
@@ -97,7 +97,7 @@ export class Service {
 
     async uploadFile(file){
         try {
-            this.bucket.createFile(
+              await this.bucket.createFile(
                 conf.appwriteBucketId,
                 ID.unique(),
                 file
