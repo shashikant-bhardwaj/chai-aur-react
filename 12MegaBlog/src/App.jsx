@@ -13,7 +13,7 @@ function App() {
   useEffect( () => {
     authService.getCurrentUser()
     .then((userData) => {
-      if(useData){
+      if(userData){
         dispatch(login({userData}))
       }else{
         dispatch(logout())
@@ -25,11 +25,11 @@ function App() {
   return !loading ? (
     <div className='min-h-screen flex flex-wrap content-center bg-gray-400'>
       <div className='w-full block'>
-        <header/>
+        <Header/>
         <main>
           {/* <Outlet/> */}
         </main>
-        <footer/>
+        <Footer/>
       </div>
     </div>
   ) : null
