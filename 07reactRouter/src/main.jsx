@@ -10,33 +10,40 @@ import Header from './components/Header/Header.jsx'
 import Contact from './components/Contact/Contact.jsx'
 import { Route } from 'react-router-dom'
 import User from './components/User/User.jsx'
+import Github, { githubInfoLoader } from './components/Github/Github.jsx'
 
 
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
         path: "",
-        element: <Home/>
+        element: <Home />
       },
       {
         path: "about",
-        element: <About/>
+        element: <About />
       },
-         {
+      {
         path: "Contact",
-        element: <Contact/>
+        element: <Contact />
       },
-            {
+      {
         path: "User/:userid",
-        element: <User/>
-      }
+        element: <User />
+      },
+      {
+        loader:githubInfoLoader,
+        path: "/Github",
+        element: <Github />
+      },
     ]
   }
 ])
+
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
@@ -52,6 +59,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router = {router} />
+    <RouterProvider router={router} />
   </StrictMode>,
 )
